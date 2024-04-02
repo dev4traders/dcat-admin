@@ -17,7 +17,7 @@ use Illuminate\Support\Traits\Macroable;
 
 /**
  * @method $this textWithIcon(string $icon = '', bool $prepend = true, string $class = '')
- * @method $this arrow(bool $colored_text = false)
+ * @method $this arrow(bool $colored_text = false, string $prepend = '', string $append = '')
  * @method $this input(bool|array $options = [])
  * @method $this textarea(bool|array $options = [])
  * @method $this editable(bool|array $options = [])
