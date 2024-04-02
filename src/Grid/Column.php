@@ -16,13 +16,16 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 
 /**
+ * @method $this arrow(bool $colored_text = false)
  * @method $this input(bool|array $options = [])
  * @method $this textarea(bool|array $options = [])
  * @method $this editable(bool|array $options = [])
  * @method $this status(string $titleOn = 'On', string $titleOff = 'Off')
  * @method $this icon(string $icon = '', string $title = '', string $color='primary')
+ * @method $this rating(int $max_value = 0)
+ * @method $this countryFlag(string $country_code = '')
  * @method $this dateHuman()
- * @method $this price(string $currency = '$')
+ * @method $this price(string $currency = '$', bool $colored = true)
  * @method $this enum()
  * @method $this enumColored()
  * @method $this tagsColored()
@@ -40,6 +43,7 @@ use Illuminate\Support\Traits\Macroable;
  * @method $this expand($callbackOrButton = null)
  * @method $this table($titles = [])
  * @method $this select($options = [], $refresh = false)
+ * @method $this detailsModal($title = '', $staticBody = '', $callback = null)
  * @method $this modal($title = '', $callback = null)
  * @method $this showTreeInDialog($callbackOrNodes = null)
  * @method $this qrcode($formatter = null, $width = 150, $height = 150)
@@ -80,6 +84,7 @@ class Column
      * @var array
      */
     protected static $displayers = [
+        'arrow'            => Displayers\Arrow::class,
         'dateHuman'        => Displayers\DateHumanDisplay::class,
         'enum'             => Displayers\EnumDisplay::class,
         'enumColored'      => Displayers\EnumColoredDisplay::class,
@@ -87,6 +92,8 @@ class Column
         'price'            => Displayers\PriceDisplay::class,
         'percent'          => Displayers\PercentDisplay::class,
         'icon'             => Displayers\IconDisplay::class,
+        'rating'           => Displayers\Rating::class,
+        'countryFlag'      => Displayers\CountryFlag::class,
         'status'           => Displayers\StatusDisplay::class,
         'switch'           => Displayers\SwitchDisplay::class,
         'switchGroup'      => Displayers\SwitchGroup::class,
@@ -101,6 +108,7 @@ class Column
         'checkbox'         => Displayers\Checkbox::class,
         'table'            => Displayers\Table::class,
         'expand'           => Displayers\Expand::class,
+        'detailsModal'     => Displayers\DetailsModal::class,
         'modal'            => Displayers\Modal::class,
         'showTreeInDialog' => Displayers\DialogTree::class,
         'qrcode'           => Displayers\QRCode::class,

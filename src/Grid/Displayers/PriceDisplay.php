@@ -4,8 +4,7 @@ namespace Dcat\Admin\Grid\Displayers;
 
 class PriceDisplay extends AbstractDisplayer
 {
-
-    public function display(string $curency = '$')
+    public function display(string $currency = '$', bool $colored = true)
     {
         if(is_null($this->value))
             return '';
@@ -14,10 +13,17 @@ class PriceDisplay extends AbstractDisplayer
             $this->value = (float)$this->value;
         }
 
+        $class = "text-success";
+        $value = $currency.$this->value;
         if($this->value < 0) {
-            return '-'.$curency.abs($this->value);
+            $class = "text-danger";
+            $value = "-".$currency.abs($this->value);
         }
 
-        return $curency.$this->value;
+        if(!$colored) {
+            $class = "";
+        }
+
+        return "<span class='".$class."'>".$value."</span>";
     }
 }
