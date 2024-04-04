@@ -3,6 +3,7 @@
 namespace Dcat\Admin\Grid;
 
 use Closure;
+use D4T\Core\Enums\StyleClassType;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Grid\Displayers\AbstractDisplayer;
 use Dcat\Admin\Support\Helper;
@@ -16,16 +17,15 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 
 /**
- * @method $this textWithIcon(string $icon = '', bool $prepend = true, string $class = '')
- * @method $this arrow(bool $colored_text = false, string $prepend = '', string $append = '')
+ * @method $this coloredText(StyleClassType $color = StyleClassType::PRIMARY)
+ * @method $this arrow(StyleClassType $colorUp = StyleClassType::SUCCESS, StyleClassType $colorDown = StyleClassType::DANGER)
  * @method $this input(bool|array $options = [])
  * @method $this textarea(bool|array $options = [])
  * @method $this editable(bool|array $options = [])
  * @method $this status(string $titleOn = 'On', string $titleOff = 'Off')
  * @method $this icon(string $icon = '', string $title = '', string $color='primary')
- * @method $this rating(int $max_value = 0)
- * @method $this countryFlag(string $class = '')
- * @method $this countryCurrency()
+ * @method $this rating(int $max_value = 0, StyleClassType $color = StyleClassType::PRIMARY)
+ * @method $this countryFlag()
  * @method $this dateHuman()
  * @method $this price(string $currency = '$', bool $colored = true)
  * @method $this enum()
@@ -38,7 +38,7 @@ use Illuminate\Support\Traits\Macroable;
  * @method $this label(StyleClassType $style = StyleClassType::PRIMARY, int $max = null)
  * @method $this button($style = 'success');
  * @method $this link($href = '', $target = '_blank');
- * @method $this badge($style = 'primary', int $max = null);
+ * @method $this badge(StyleClassType $style = StyleClassType::PRIMARY, int $max = null);
  * @method $this progressBar($style = 'primary', $size = 'sm', $max = 100)
  * @method $this checkbox($options = [], $refresh = false)
  * @method $this radio($options = [], $refresh = false)
@@ -86,7 +86,7 @@ class Column
      * @var array
      */
     protected static $displayers = [
-        'textWithIcon'     => Displayers\TextWithIcon::class,
+        'coloredText'      => Displayers\ColoredText::class,
         'arrow'            => Displayers\Arrow::class,
         'dateHuman'        => Displayers\DateHumanDisplay::class,
         'enum'             => Displayers\EnumDisplay::class,
@@ -97,7 +97,6 @@ class Column
         'icon'             => Displayers\IconDisplay::class,
         'rating'           => Displayers\Rating::class,
         'countryFlag'      => Displayers\CountryFlag::class,
-        'countryCurrency'  => Displayers\CountryCurrency::class,
         'status'           => Displayers\StatusDisplay::class,
         'switch'           => Displayers\SwitchDisplay::class,
         'switchGroup'      => Displayers\SwitchGroup::class,

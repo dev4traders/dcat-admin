@@ -50,8 +50,8 @@ class AdminController extends Controller
     }
 
     protected function helpTopic() : string
-    {        
-        if(!ControllerHelpTopic::docsEnabled()) 
+    {
+        if(!ControllerHelpTopic::docsEnabled())
             return '';
 
         $name = Helper::getControllerName();
@@ -62,7 +62,7 @@ class AdminController extends Controller
         $str = '';
         if(!is_null($item)) {
             $str = '<a target="_blank" style="font-size:small" href="'.$item->url.'">'.__('admin.need_help').'<i class="fa feather icon-help-circle"></i></a>';
-        }        
+        }
 
         // if(Admin::user()->isAdministrator()) {
         //     $modal = new Modal();
@@ -74,7 +74,7 @@ class AdminController extends Controller
         // }
 
         return $str;
-    }    
+    }
 
     /**
      * Get translation path.
@@ -115,7 +115,7 @@ class AdminController extends Controller
             ->translation($this->translation())
             ->title($this->title())
             ->helpTopic($this->helpTopic())
-            ->body($this->detail($id));
+            ->body($this->detail($id, $content));
     }
 
     /**

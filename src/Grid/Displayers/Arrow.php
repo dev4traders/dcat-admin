@@ -2,24 +2,23 @@
 
 namespace Dcat\Admin\Grid\Displayers;
 
+use D4T\Core\Enums\StyleClassType;
+
 class Arrow extends AbstractDisplayer
 {
-    public function display(bool $colored_text = false, string $prepend = '', string $append = ''): string
+    public function display(StyleClassType $colorUp = StyleClassType::SUCCESS, StyleClassType $colorDown = StyleClassType::DANGER): string
     {
-        $class = "green-arrow";
-        if( $colored_text ) {
-            $class = "green green-arrow";
-        }
-
+        $class = $colorUp;
+        $orientation = "up";
         if( $this->value < 0 ) {
-            $class = "red-arrow";
-            if( $colored_text ) {
-                $class = "red red-arrow";
-            }
+            $class = $colorDown;
+            $orientation = "down";
         }
 
-        return '<span class="cp-table-cell '.$class.'"><span class="cp-table-cell__text">'.
-            $prepend.$this->value.$append.
-        '</span></span>';
+        return '<span class="cp-table-cell cp-table-cell_arrowed cp-table-cell_arrowed-'.$orientation.' cp-table-cell_arrowed-'.$class->value.'">'.
+            '<span class="cp-table-cell__text">'.
+                $this->value.
+            '</span>'.
+        '</span>';
     }
 }
