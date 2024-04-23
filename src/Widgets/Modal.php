@@ -340,7 +340,7 @@ JS;
 
         $this->on('show.bs.modal', <<<JS
 body.html('<div style="min-height:150px"></div>').loading();
-        
+
 setTimeout(function () {
     target.trigger('{$this->target}:load')
 }, {$this->delay});
@@ -369,8 +369,12 @@ JS
     {
         return <<<HTML
 <div {$this->formatHtmlAttributes()} role="dialog">
-    <div class="modal-dialog {$this->centered} {$this->scrollable} modal-{$this->size}">
-        <div class="modal-content">
+    <div class="modal-dialog cp-details-modal {$this->centered} {$this->scrollable}">
+        <div class="modal-content cp-details-modal__content">
+            <span class="cp-details-modal__squares cp-details-modal__squares_lt"></span>
+            <span class="cp-details-modal__squares cp-details-modal__squares_lb"></span>
+            <span class="cp-details-modal__squares cp-details-modal__squares_rb"></span>
+
             <div class="modal-header">
                 <h4 class="modal-title">{$this->renderTitle()}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

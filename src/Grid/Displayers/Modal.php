@@ -71,10 +71,13 @@ class Modal extends AbstractDisplayer
             ->button($this->renderButton());
     }
 
-    protected function renderButton()
+    protected function renderButton(): string
     {
-        $icon = $this->icon ? "<i class='fa {$this->icon}'></i>&nbsp;&nbsp;" : '';
-
-        return "<a href='javascript:void(0)'>{$icon}{$this->value}</a>";
+        return <<<HTML
+        <button type="button" class="cp-details-modal__button">
+            $this->value
+            <span class="icomoon-link-arrow"></span>
+        </button>
+        HTML;
     }
 }
